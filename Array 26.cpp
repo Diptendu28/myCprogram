@@ -1,0 +1,46 @@
+/*Histogram[another way]*/
+#include<stdio.h>
+int main()
+{
+	int n,k,count;
+	printf("Enter the size of array: ");
+	scanf("%d",&n);
+	int a[n];
+	printf("Enter the number of elements: ");
+	for(k=0;k<n;k++)
+	{
+		printf("\n Array[%d]=",k);
+		scanf("%d",&a[k]);
+	}
+	int i,j,t;
+	for(i=0;i<n;i++)
+	{
+		for(j=i-1;j>=0;j--)
+		{
+			if(a[j+1]<a[j])
+			{
+				t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			}
+			else
+				break;
+		}
+	}
+	printf("\n\nELEMENTS\tFREQUENCY\tHISTOGRAM");
+	for(i=0;i<n;i+=count)
+	{
+		count=1;
+		for(j=i+1;j<n;j++)
+		{
+			if(a[i]==a[j])
+				count+=1;
+			else
+				break;
+		}
+		printf("\n\n%d\t\t%d\t\t",a[i],count);
+		for(k=0;k<count;k++)
+			printf("*");
+	}
+	return 0;
+}
